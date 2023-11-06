@@ -5,6 +5,7 @@ import { MdModeNight } from "react-icons/md";
 const Theme = () => {
   const [theme, setTheme] = useState(false);
   const [showThemeTooltip, setShowThemeTooltip] = useState(false);
+
   // theme mode
   useEffect(() => {
     if (theme) {
@@ -15,6 +16,7 @@ const Theme = () => {
       document.documentElement.classList.add("light");
     }
   }, [theme]);
+
   return (
     <button
       onClick={() => setTheme(!theme)}

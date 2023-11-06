@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
+import Theme from "../Theme";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,15 +24,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`w-full fixed top-0 transition-all duration-300 ${
-        scrolled ? "bg-transparent text-white" : ""
-      }`}
-    >
+    <nav className="w-full fixed top-0 transition-all duration-300">
       <div
         className={`max-w-7xl mx-5 md:mx-10 xl:mx-auto my-6 flex items-center justify-between ${
           scrolled
-            ? "bg-white rounded-full px-4 py-2 transition-all duration-300 ease-in-out"
+            ? "bg-white rounded-full shadow-sm px-4 py-2 transition-all duration-300 ease-in-out dark:text-black"
             : "bg-transparent transition-all duration-300 ease-in-out"
         }`}
       >
@@ -40,18 +37,19 @@ const Navbar = () => {
           <h3
             style={{
               textShadow:
-                "2px 2px 4px rgba(0, 0, 0, 0.5), 2px 2px 4px rgba(255, 255, 255, 0.5)",
+                "2px 2px 4px rgba(0, 0, 0, 0.4), 2px 2px 4px rgba(255, 255, 255, 0.4)",
             }}
-            className={`sm:text-lg md:text-xl font-bold text-orange-600 shadow-white  tracking-widest`}
+            className="sm:text-lg md:text-xl font-bold text-orange-500 shadow-white  tracking-widest"
           >
-            Library <span className="text-cyan-800">Hub</span>
+            Library <span className="text-cyan-700">Hub</span>
           </h3>
         </div>
+
         <div
           className={`hidden lg:flex items-center gap-8 text-base font-semibold ${
             scrolled
-              ? "text-cyan-800 transition-colors duration-300 ease-in-out"
-              : "text-white transition-colors duration-300 ease-in-out"
+              ? "text-cyan-700 transition-colors duration-300 ease-in-out"
+              : "text-orange-500  transition-colors duration-300 ease-in-out"
           }`}
         >
           <NavLink
@@ -60,7 +58,9 @@ const Navbar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "underline underline-offset-[6px] tracking-widest "
+                ? scrolled
+                  ? "text-orange-500 underline underline-offset-[6px] "
+                  : "text-cyan-700 underline underline-offset-[6px] "
                 : ""
             }
           >
@@ -72,7 +72,9 @@ const Navbar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "underline underline-offset-[6px] tracking-widest"
+                ? scrolled
+                  ? "text-orange-500 underline underline-offset-[6px] "
+                  : "text-cyan-700 underline underline-offset-[6px] "
                 : ""
             }
           >
@@ -84,7 +86,9 @@ const Navbar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "underline underline-offset-[6px] tracking-widest"
+                ? scrolled
+                  ? "text-orange-500 underline underline-offset-[6px] "
+                  : "text-cyan-700 underline underline-offset-[6px] "
                 : ""
             }
           >
@@ -96,31 +100,37 @@ const Navbar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "underline underline-offset-[6px] tracking-widest"
+                ? scrolled
+                  ? "text-orange-500 underline underline-offset-[6px] "
+                  : "text-cyan-700 underline underline-offset-[6px] "
                 : ""
             }
           >
             Borrowed Books
           </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? "pending"
-                : isActive
-                ? "underline underline-offset-[6px] tracking-widest"
-                : ""
-            }
-          >
-            Login
-          </NavLink>
         </div>
-        <label
-          htmlFor="my-drawer-4"
-          className="lg:hidden drawer-button btn btn-sm btn-circle"
-        >
-          <VscMenu></VscMenu>
-        </label>
+
+        <div className="flex items-center gap-3 md:gap-8">
+          <Theme></Theme>
+
+          <Link to={"/login"}>
+            <button
+              className={
+                scrolled
+                  ? "btn btn-xs md:btn-sm text-white bg-cyan-700 hover:bg-cyan-800 border-none transition duration-300 ease-in-out rounded-md"
+                  : " btn btn-xs md:btn-sm text-white bg-orange-500 hover:bg-orange-600 border-none transition duration-300 ease-in-out rounded-md"
+              }
+            >
+              Login
+            </button>
+          </Link>
+          <label
+            htmlFor="my-drawer-4"
+            className="lg:hidden drawer-button btn btn-sm btn-circle"
+          >
+            <VscMenu></VscMenu>
+          </label>
+        </div>
       </div>
 
       {/* ------------------------------------ */}
@@ -181,18 +191,6 @@ const Navbar = () => {
               }
             >
               Borrowed Books
-            </NavLink>
-            <NavLink
-              to="/login"
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "underline underline-offset-[6px] tracking-widest"
-                  : ""
-              }
-            >
-              Login
             </NavLink>
           </ul>
         </div>
