@@ -3,23 +3,29 @@ import { MdLightMode } from "react-icons/md";
 import { MdModeNight } from "react-icons/md";
 
 const Theme = () => {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") === "dark");
+
   const [showThemeTooltip, setShowThemeTooltip] = useState(false);
 
-  // theme mode
   useEffect(() => {
     if (theme) {
       document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
+      localStorage.setItem("theme", "light");
     }
   }, [theme]);
 
+  const handleTheme = () => {
+    setTheme(!theme);
+  };
+
   return (
     <button
-      onClick={() => setTheme(!theme)}
+      onClick={handleTheme}
       onMouseEnter={() => setShowThemeTooltip(true)}
       onMouseLeave={() => setShowThemeTooltip(false)}
       className="relative"

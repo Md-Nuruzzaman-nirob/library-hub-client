@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full fixed top-0 transition-all duration-300">
+    <nav className="w-full fixed top-0 transition-all duration-300 z-50">
       <div
         className={`max-w-7xl mx-5 md:mx-10 xl:mx-auto my-6 flex items-center justify-between ${
           scrolled

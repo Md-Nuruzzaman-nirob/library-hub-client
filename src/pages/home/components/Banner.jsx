@@ -1,5 +1,6 @@
 import banner from "../../../assets/image6.png";
 import bg from "../../../assets/gradient-bg.svg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -36,12 +37,18 @@ const Banner = () => {
             imagination.
           </p>
           <div className="flex items-center justify-center md:justify-start gap-3">
-            <button className="btn btn-sm md:btn-md  bg-orange-500 hover:bg-orange-600  text-white text-xs md:text-sm rounded-full border-none">
+            <Link
+              to={"/register"}
+              className="btn btn-sm md:btn-md  bg-orange-500 hover:bg-orange-600  text-white text-xs md:text-sm rounded-full border-none"
+            >
               Register Now
-            </button>
-            <button className="btn btn-outline btn-sm md:btn-md hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white">
+            </Link>
+            <a
+              href="#categories"
+              className="btn btn-outline btn-sm md:btn-md hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white"
+            >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
         <div className="md:flex-1">

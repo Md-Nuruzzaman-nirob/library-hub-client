@@ -10,17 +10,19 @@ const SocialLogin = () => {
   };
   return (
     <>
-      <div className="divider font-medium">Or Login With</div>
+      <div className="divider font-medium text-xs md:text-sm lg:text-base">
+        Or Login With
+      </div>
       <div className="flex items-center gap-4">
         <button
           onClick={() => socialLogin(googleLogin)}
-          className="flex-1 btn border-transparent bg-white font-bold font-Montserrat rounded-full"
+          className="flex-1 btn btn-xs md:btn-sm lg:btn-md border-transparent bg-white font-bold font-Montserrat rounded-full"
         >
           <FcGoogle></FcGoogle> Google
         </button>
         <button
           onClick={() => socialLogin(facebookLogin)}
-          className="flex-1 btn border-transparent bg-white font-bold font-Montserrat rounded-full"
+          className="flex-1 btn btn-xs md:btn-sm lg:btn-md border-transparent bg-white font-bold font-Montserrat rounded-full"
         >
           <FaFacebook className="text-blue-500"></FaFacebook>Facebook
         </button>

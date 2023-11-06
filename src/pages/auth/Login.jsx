@@ -1,6 +1,6 @@
 import { useState } from "react";
 import bg from "../../assets/bgGradiant.jpg";
-import banner from "../../assets/login.png";
+import banner from "../../assets/login.svg";
 import {
   RiCheckboxBlankCircleLine,
   RiEyeFill,
@@ -16,7 +16,6 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email, password);
 
   const { loginUser } = useAuth();
 
@@ -38,19 +37,23 @@ const Login = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
+      className="relative"
     >
-      <div className="max-w-7xl mx-5 md:mx-10 xl:mx-auto h-screen flex items-center justify-center">
-        <div className="flex-1">
-          <img className="w-4/6 mx-auto" src={banner} alt="" />
+      <div className="max-w-7xl md:mx-10 xl:mx-auto h-screen flex flex-col md:flex-row items-center justify-center md:gap-9 xl:gap-40">
+        <div className="absolute md:left-0 lg:left-6 xl:left-12 2xl:left-0 w-full md:w-4/6">
+          <img className="md:w-10/12" src={banner} alt="" />
         </div>
 
-        <div className="flex-1 ">
-          <h3 className="text-6xl font-bold text-center mb-16">Login Now</h3>
+        <div className="hidden md:block flex-[6] lg:flex-[7]"></div>
+        <div className="bg-stone-100/90 md:bg-transparent md:flex-[5] lg:flex-[5] z-10 p-5 md:p-0 rounded-xl">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center mb-10 2xl:mb-16">
+            Login Now
+          </h3>
           <form onSubmit={handleSubmit}>
-            <div className=" mt-4 flex flex-col">
+            <div className="flex flex-col">
               <label
                 htmlFor="email"
-                className="ml-4 text-lg text-gray-600 font-medium"
+                className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"
               >
                 Email
               </label>
@@ -62,14 +65,14 @@ const Login = () => {
                 autoComplete="email"
                 required
                 placeholder="Enter your email"
-                className="w-full mt-2 px-4 py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
+                className="w-full mt-2 px-4 py-1 lg:py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
               />
             </div>
 
-            <div className=" mt-4 flex flex-col relative">
+            <div className="mt-2 lg:mt-3 xl:mt-4 flex flex-col relative">
               <label
                 htmlFor="password"
-                className="ml-4 text-lg text-gray-600 font-medium"
+                className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"
               >
                 Password
               </label>
@@ -81,49 +84,49 @@ const Login = () => {
                 autoComplete="current-password"
                 required
                 placeholder="Enter your password"
-                className="w-full mt-2 px-4 py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
+                className="w-full mt-2 pl-4 pr-10 py-1 lg:py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
               />
               <p
                 onClick={() => setShowPass(!showPass)}
-                className="absolute right-5 top-12"
+                className="absolute right-4 lg:right-5 top-11 lg:top-12"
               >
                 {showPass ? (
-                  <RiEyeFill className="w-6 h-6" />
+                  <RiEyeFill className="lg:w-6 lg:h-6" />
                 ) : (
-                  <RiEyeOffFill className="w-6 h-6" />
+                  <RiEyeOffFill className="lg:w-6 lg:h-6" />
                 )}
               </p>
             </div>
 
-            <div className="mx-4 mt-4 flex items-center justify-between">
-              <div className="flex">
+            <div className="xl:mx-4 mt-2 lg:mt-3 xl:mt-4 flex items-center justify-between">
+              <div className="flex items-center">
                 <p onClick={() => setChecked(!checked)}>
                   {checked ? (
-                    <RiCheckboxCircleFill className="w-8 h-8 text-teal-600" />
+                    <RiCheckboxCircleFill className="w-6 h-6 lg:w-8 lg:h-8 text-teal-600" />
                   ) : (
-                    <RiCheckboxBlankCircleLine className="w-8 h-8 text-white" />
+                    <RiCheckboxBlankCircleLine className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                   )}
                 </p>
                 <p
-                  className={`ml-2 text-lg font-medium ${
+                  className={`ml-2 text-xs md:text-base lg:text-lg font-medium ${
                     checked ? "text-black" : "text-gray-600"
                   }`}
                 >
                   Remember Me
                 </p>
               </div>
-              <p className="text-lg font-medium text-gray-600">
+              <p className="text-xs md:text-base lg:text-lg font-medium text-gray-800 md:text-gray-600">
                 Forget password?
               </p>
             </div>
             <button
               type="submit"
-              className="w-full btn rounded-full mt-10 text-base font-bold font-Montserrat bg-teal-600 hover:bg-teal-700 border-transparent hover:border-transparent  text-white"
+              className="w-full btn btn-sm lg:btn-md rounded-full mt-6 xl:mt-10 text-base font-bold font-Montserrat bg-teal-600 hover:bg-teal-700 border-transparent hover:border-transparent  text-white"
             >
               Login
             </button>
           </form>
-          <div className="mt-4 flex items-center justify-center gap-2 text-lg font-medium">
+          <div className="mt-2 lg:mt-3 xl:mt-4 flex items-center justify-center gap-2 text-sm lg:text-lg font-medium">
             <p>Don&apos;t have an account? </p>
             <Link
               to={"/register"}
