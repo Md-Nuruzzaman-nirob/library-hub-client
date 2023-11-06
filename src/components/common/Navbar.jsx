@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
-import Theme from "../Theme";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -74,7 +73,7 @@ const Navbar = () => {
                 : isActive
                 ? scrolled
                   ? "text-orange-500 underline underline-offset-[6px] "
-                  : "text-cyan-700 underline underline-offset-[6px] "
+                  : "text-cyan-700 underline underline-offset-[6px]"
                 : ""
             }
           >
@@ -110,15 +109,13 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="flex items-center gap-3 md:gap-8">
-          <Theme></Theme>
-
+        <div className="flex items-center gap-3 md:gap-8 relative">
           <Link to={"/login"}>
             <button
               className={
                 scrolled
-                  ? "btn btn-xs md:btn-sm text-white bg-cyan-700 hover:bg-cyan-800 border-none transition duration-300 ease-in-out rounded-md"
-                  : " btn btn-xs md:btn-sm text-white bg-orange-500 hover:bg-orange-600 border-none transition duration-300 ease-in-out rounded-md"
+                  ? "btn btn-xs md:btn-sm text-white bg-cyan-700 hover:bg-cyan-800 border-none transition duration-300 ease-in-out rounded-full"
+                  : " btn btn-xs md:btn-sm text-white bg-orange-500 hover:bg-orange-600 border-none transition duration-300 ease-in-out rounded-full"
               }
             >
               Login
