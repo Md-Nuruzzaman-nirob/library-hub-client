@@ -11,7 +11,7 @@ const Footer = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className=" max-w-7xl mx-5 md:mx-10 xl:mx-auto ">
+      <div className="static max-w-7xl mx-5 md:mx-10 xl:mx-auto ">
         <footer className="footer py-10 md:justify-around">
           <nav>
             <header className="footer-title">Services</header>

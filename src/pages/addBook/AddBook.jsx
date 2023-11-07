@@ -30,23 +30,24 @@ const AddBook = () => {
       content,
     };
     try {
-      const result = await axios.post(
-        "http://localhost:5001/api/v1/create-book",
-        addBook
-      );
-      if (result.data.acknowledged) {
-        alert("book added successfully");
-        setBookTitle("");
-        setAuthorName("");
-        setCategory("");
-        setQuantity("");
-        setImageUrl("");
-        setDescription("");
-        setDate("");
-        setRating("");
-        setContent("");
-        formRef.current.reset();
-      }
+      await axios
+        .post("http://localhost:5001/api/v1/create-book", addBook)
+        .then((data) => {
+          console.log(data.data);
+          if (data.data.acknowledged) {
+            alert("book added successfully");
+            setBookTitle("");
+            setAuthorName("");
+            setCategory("");
+            setQuantity("");
+            setImageUrl("");
+            setDescription("");
+            setDate("");
+            setRating("");
+            setContent("");
+            formRef.current.reset();
+          }
+        });
     } catch (err) {
       console.log(err);
     }

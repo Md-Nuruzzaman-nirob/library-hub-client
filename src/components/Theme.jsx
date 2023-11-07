@@ -5,7 +5,7 @@ import { MdModeNight } from "react-icons/md";
 const Theme = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") === "dark");
 
-  const [showThemeTooltip, setShowThemeTooltip] = useState(false);
+  // const [showThemeTooltip, setShowThemeTooltip] = useState(false);
 
   useEffect(() => {
     if (theme) {
@@ -24,34 +24,34 @@ const Theme = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 lg:bottom-7 lg:right-7 xl:bottom-8 xl:right-8 2xl:bottom-10 2xl:right-10 bg-black dark:bg-white rounded-full w-10 h-10 flex justify-center items-center z-50">
+    <div className="fixed bottom-5 right-5 lg:bottom-7 lg:right-7 xl:bottom-8 xl:right-8 2xl:bottom-10 2xl:right-10 z-50">
       <button
         onClick={handleTheme}
-        onMouseEnter={() => setShowThemeTooltip(true)}
-        onMouseLeave={() => setShowThemeTooltip(false)}
-        className="relative "
+        // onMouseEnter={() => setShowThemeTooltip(true)}
+        // onMouseLeave={() => setShowThemeTooltip(false)}
+        className="relative btn btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white border-none"
       >
         {theme ? (
           <>
-            <MdModeNight className="w-7 h-7 text-black"></MdModeNight>
-            <p>
+            <MdModeNight className="w-7 h-7 text-black "></MdModeNight>
+            {/* <p>
               {showThemeTooltip && (
-                <small className="hidden lg:block absolute top-10 left-0 font-Ubuntu font-medium z-[100]">
+                <small className="hidden lg:block absolute top-10 left-0 font-Ubuntu font-medium z-[100] dark:text-gray-100">
                   Dark
                 </small>
               )}
-            </p>
+            </p> */}
           </>
         ) : (
           <>
             <MdLightMode className="w-7 h-7 text-white"></MdLightMode>
-            <p>
+            {/* <p>
               {showThemeTooltip && (
                 <small className="hidden lg:block absolute top-10 left-0 font-Ubuntu font-medium z-[100]">
                   Light
                 </small>
               )}
-            </p>
+            </p> */}
           </>
         )}
       </button>

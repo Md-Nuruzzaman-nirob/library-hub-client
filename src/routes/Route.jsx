@@ -6,8 +6,9 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import BorrowedBooks from "../pages/borrowedBooks/BorrowedBooks";
 import AllBooks from "../pages/allBooks/AllBooks";
-import CategoryDetails from "../pages/home/components/CategoryDetails";
+import CategoryDetails from "../pages/home/components/categories/CategoryDetails";
 import PrivateRoute from "./PrivateRoute";
+import BookDetails from "../pages/home/components/details/BookDetails";
 
 const Route = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const Route = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        // loader: () => fetch("http://localhost:5001/api/v1/categories"),
+        loader: () => fetch("http://localhost:5001/api/v1/categories"),
       },
       {
         path: "addBook",
@@ -51,7 +52,16 @@ const Route = createBrowserRouter([
             <CategoryDetails></CategoryDetails>
           </PrivateRoute>
         ),
-        // loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+      },
+      {
+        path: ":category/:id",
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
       },
     ],
   },

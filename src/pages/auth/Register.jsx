@@ -14,6 +14,9 @@ import useAuth from "../../hooks/useAuth";
 const Register = () => {
   const [checked, setChecked] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [firstName, setFirstName] = useState(false);
+  const [lastName, setLastName] = useState(false);
+  const [imageUrl, setImageUrl] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -50,6 +53,60 @@ const Register = () => {
           </h3>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col">
+              <label
+                htmlFor="firstName"
+                className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"
+              >
+                First Name
+              </label>
+              <input
+                onBlur={(e) => setFirstName(e.target.value)}
+                type="text"
+                id="firstName"
+                name="firstName"
+                autoComplete="firstName"
+                required
+                placeholder="Enter your first name"
+                className="w-full mt-2 px-4 py-1 lg:py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
+              />
+            </div>
+            <div className="mt-2 lg:mt-3 xl:mt-4   flex flex-col">
+              <label
+                htmlFor="lastName"
+                className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"
+              >
+                Last Name
+              </label>
+              <input
+                onBlur={(e) => setLastName(e.target.value)}
+                type="text"
+                id="lastName"
+                name="lastName"
+                autoComplete="lastName"
+                required
+                placeholder="Enter your last name"
+                className="w-full mt-2 px-4 py-1 lg:py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
+              />
+            </div>
+            <div className="mt-2 lg:mt-3 xl:mt-4  flex flex-col">
+              <label
+                htmlFor="url"
+                className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"
+              >
+                Photo URL
+              </label>
+              <input
+                onBlur={(e) => setImageUrl(e.target.value)}
+                type="url"
+                id="url"
+                name="url"
+                autoComplete="url"
+                required
+                placeholder="Enter your photo url"
+                className="w-full mt-2 px-4 py-1 lg:py-3 border rounded-full border-transparent focus:outline-none focus:border-teal-600"
+              />
+            </div>
+            <div className="mt-2 lg:mt-3 xl:mt-4  flex flex-col">
               <label
                 htmlFor="email"
                 className="ml-4 lg:text-lg text-gray-800 md:text-gray-600 font-medium"

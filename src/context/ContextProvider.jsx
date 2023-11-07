@@ -72,8 +72,6 @@ const ContextProvider = ({ children }) => {
     user,
     loader,
   };
-
-  console.log(user);
   return (
     <AuthContext.Provider value={authentication}>
       {children}

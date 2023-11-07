@@ -9,6 +9,7 @@ export default {
     extend: {
       fontFamily: {
         Montserrat: ['Montserrat', 'sans-serif'],
+        PT: ['PT Sans', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
       },
     },
