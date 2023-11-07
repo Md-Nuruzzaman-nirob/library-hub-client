@@ -24,7 +24,7 @@ const Theme = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 lg:bottom-10 lg:right-10 bg-black dark:bg-white rounded-full w-10 h-10 flex justify-center items-center z-50">
+    <div className="fixed bottom-5 right-5 lg:bottom-7 lg:right-7 xl:bottom-8 xl:right-8 2xl:bottom-10 2xl:right-10 bg-black dark:bg-white rounded-full w-10 h-10 flex justify-center items-center z-50">
       <button
         onClick={handleTheme}
         onMouseEnter={() => setShowThemeTooltip(true)}

@@ -7,6 +7,7 @@ import Register from "../pages/auth/Register";
 import BorrowedBooks from "../pages/borrowedBooks/BorrowedBooks";
 import AllBooks from "../pages/allBooks/AllBooks";
 import CategoryDetails from "../pages/home/components/CategoryDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const Route = createBrowserRouter([
   {
@@ -16,23 +17,41 @@ const Route = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5001/api/v1/categories"),
+        // loader: () => fetch("http://localhost:5001/api/v1/categories"),
       },
       {
         path: "addBook",
-        element: <AddBook></AddBook>,
+        element: (
+          <PrivateRoute>
+            <AddBook></AddBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "allBooks",
-        element: <AllBooks></AllBooks>,
+        element: (
+          <PrivateRoute>
+            <AllBooks></AllBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "borrowedBooks",
-        element: <BorrowedBooks></BorrowedBooks>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <BorrowedBooks></BorrowedBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: ":id",
-        element: <CategoryDetails></CategoryDetails>,
+        element: (
+          <PrivateRoute>
+            <CategoryDetails></CategoryDetails>
+          </PrivateRoute>
+        ),
+        // loader: () => fetch("http://localhost:5001/api/v1/read-book"),
       },
     ],
   },

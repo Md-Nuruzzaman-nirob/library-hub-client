@@ -132,7 +132,7 @@ const Navbar = () => {
 
       {/* ------------------------------------ */}
 
-      <div className="drawer drawer-end lg:hidden">
+      <div className="drawer drawer-end lg:hidden dark:bg-gray-900 ">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-side">
           <label
@@ -140,14 +140,24 @@ const Navbar = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu flex flex-col gap-5 px-8 py-10 w-56 sm:w-64 min-h-full bg-base-200 text-base-content sm:text-base font-semibold">
+
+          <ul
+            className={`menu flex flex-col gap-5 px-8 py-16 w-60 sm:w-72 min-h-full bg-base-300 dark:bg-gray-900 dark:border-l dark:border-t text-base font-semibold ${
+              scrolled
+                ? "text-cyan-700 transition-colors duration-300 ease-in-out"
+                : "text-orange-500  transition-colors duration-300 ease-in-out"
+            }`}
+          >
+            <div className="border-2 border-gray-800 dark:border-gray-300"></div>
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
                   : isActive
-                  ? "underline underline-offset-[6px] tracking-widest "
+                  ? scrolled
+                    ? "text-orange-500 underline underline-offset-[6px] "
+                    : "text-cyan-700 underline underline-offset-[6px] "
                   : ""
               }
             >
@@ -159,7 +169,9 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "underline underline-offset-[6px] tracking-widest"
+                  ? scrolled
+                    ? "text-orange-500 underline underline-offset-[6px] "
+                    : "text-cyan-700 underline underline-offset-[6px]"
                   : ""
               }
             >
@@ -171,7 +183,9 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "underline underline-offset-[6px] tracking-widest"
+                  ? scrolled
+                    ? "text-orange-500 underline underline-offset-[6px] "
+                    : "text-cyan-700 underline underline-offset-[6px] "
                   : ""
               }
             >
@@ -183,12 +197,15 @@ const Navbar = () => {
                 isPending
                   ? "pending"
                   : isActive
-                  ? "underline underline-offset-[6px] tracking-widest"
+                  ? scrolled
+                    ? "text-orange-500 underline underline-offset-[6px] "
+                    : "text-cyan-700 underline underline-offset-[6px] "
                   : ""
               }
             >
               Borrowed Books
             </NavLink>
+            <div className="border-2 border-gray-800 dark:border-gray-300"></div>
           </ul>
         </div>
       </div>
