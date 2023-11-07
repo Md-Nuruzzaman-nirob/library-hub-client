@@ -5,6 +5,7 @@ import TrustedBrands from "./components/TrustedBrands";
 
 const Home = () => {
   const categories = useLoaderData();
+  console.log(categories);
   return (
     <div className="">
       <Banner></Banner>

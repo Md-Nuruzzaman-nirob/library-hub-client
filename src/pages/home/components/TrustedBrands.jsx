@@ -9,7 +9,6 @@ import brand7 from "../../../assets/icon8.jpg";
 import brand8 from "../../../assets/icon9.jpg";
 import brand9 from "../../../assets/icon10.jpg";
 import brand10 from "../../../assets/icon11.png";
-import brand11 from "../../../assets/icon7.jpg";
 
 const TrustedBrands = () => {
   return (
