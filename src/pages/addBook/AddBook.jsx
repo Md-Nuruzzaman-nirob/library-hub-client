@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import bg from "../../assets/bg4.jpg";
 import bg2 from "../../assets/gradient-bg.svg";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddBook = () => {
   const [bookTitle, setBookTitle] = useState("");
@@ -18,6 +19,7 @@ const AddBook = () => {
 
   const handleBookSubmit = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Adding Book in Progress...");
     const addBook = {
       bookTitle,
       authorName,
@@ -33,9 +35,8 @@ const AddBook = () => {
       await axios
         .post("http://localhost:5001/api/v1/create-book", addBook)
         .then((data) => {
-          console.log(data.data);
           if (data.data.acknowledged) {
-            alert("book added successfully");
+            toast.success("Book Added Successfully", { id: toastId });
             setBookTitle("");
             setAuthorName("");
             setCategory("");
@@ -249,7 +250,7 @@ const AddBook = () => {
                   name="url"
                   id="url"
                   placeholder="Publish date"
-                  // defaultValue={defaultDate}
+                  required
                 />
               </div>
               <div className="flex flex-col w-full">
@@ -293,6 +294,7 @@ const AddBook = () => {
                 className="w-full h-28 md:h-32 lg:h-40 px-2 md:px-3 lg:px-4 py-1 lg:py-2 mt-2 border 
                 border-transparent focus:border-teal-600 bg-gray-200 rounded focus:outline-none text-black"
                 placeholder="Add book content"
+                required
                 // resize-none --advance
               ></textarea>
             </div>

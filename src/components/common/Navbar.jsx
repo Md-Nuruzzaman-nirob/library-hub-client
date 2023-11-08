@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
+import useAuth from "../../hooks/useAuth";
+import { Avatar } from "@mui/material";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,18 +35,20 @@ const Navbar = () => {
             : "bg-transparent transition-all duration-300 ease-in-out"
         }`}
       >
-        <div className="flex items-center gap-2">
-          <img className="w-8 h-8 md:w-10 md:h-10" src={logo} alt="" />
-          <h3
-            style={{
-              textShadow:
-                "2px 2px 4px rgba(0, 0, 0, 0.4), 2px 2px 4px rgba(255, 255, 255, 0.4)",
-            }}
-            className="sm:text-lg md:text-xl font-bold text-orange-500 shadow-white  tracking-widest"
-          >
-            Library <span className="text-cyan-700">Hub</span>
-          </h3>
-        </div>
+        <Link to={"/"}>
+          <div className="flex items-center gap-2">
+            <img className="w-8 h-8 md:w-10 md:h-10" src={logo} alt="" />
+            <h3
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0, 0, 0, 0.4), 2px 2px 4px rgba(255, 255, 255, 0.4)",
+              }}
+              className="sm:text-lg md:text-xl font-bold text-orange-500 shadow-white  tracking-widest"
+            >
+              Library <span className="text-cyan-700">Hub</span>
+            </h3>
+          </div>
+        </Link>
 
         <div
           className={`hidden lg:flex items-center gap-8 text-base font-semibold ${
@@ -110,17 +116,27 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3 md:gap-8 relative">
-          <Link to={"/login"}>
-            <button
-              className={
-                scrolled
-                  ? "btn btn-xs md:btn-sm text-white bg-cyan-700 hover:bg-cyan-800 border-none transition duration-300 ease-in-out rounded-full"
-                  : " btn btn-xs md:btn-sm text-white bg-orange-500 hover:bg-orange-600 border-none transition duration-300 ease-in-out rounded-full"
-              }
-            >
-              Login
+          {user?.email ? (
+            <button onClick={() => logout()}>
+              {!user.imageURL ? (
+                <Avatar src="/broken-image.jpg" />
+              ) : (
+                <img src={user.email} alt="" />
+              )}
             </button>
-          </Link>
+          ) : (
+            <Link to={"/login"}>
+              <button
+                className={
+                  scrolled
+                    ? "btn btn-xs md:btn-sm text-white bg-cyan-700 hover:bg-cyan-800 border-none transition duration-300 ease-in-out rounded-full"
+                    : " btn btn-xs md:btn-sm text-white bg-orange-500 hover:bg-orange-600 border-none transition duration-300 ease-in-out rounded-full"
+                }
+              >
+                Login
+              </button>
+            </Link>
+          )}
           <label
             htmlFor="my-drawer-4"
             className="lg:hidden drawer-button btn btn-sm btn-circle"
@@ -142,7 +158,7 @@ const Navbar = () => {
           ></label>
 
           <ul
-            className={`menu flex flex-col gap-5 px-8 py-16 w-60 sm:w-72 min-h-full bg-base-300 dark:bg-gray-900 dark:border-l dark:border-t text-base font-semibold ${
+            className={`menu flex flex-col gap-5 px-8 py-16 w-60 sm:w-72 min-h-full bg-base-100 dark:bg-gray-900 dark:border-l dark:border-t text-base font-semibold ${
               scrolled
                 ? "text-cyan-700 transition-colors duration-300 ease-in-out"
                 : "text-orange-500  transition-colors duration-300 ease-in-out"
@@ -205,7 +221,6 @@ const Navbar = () => {
             >
               Borrowed Books
             </NavLink>
-            <div className="border-2 border-gray-800 dark:border-gray-300"></div>
           </ul>
         </div>
       </div>

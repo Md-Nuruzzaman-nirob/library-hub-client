@@ -39,7 +39,7 @@ const Login = () => {
       }}
       className="relative"
     >
-      <div className="max-w-7xl md:mx-10 xl:mx-auto h-screen flex flex-col md:flex-row items-center justify-center md:gap-9 xl:gap-40">
+      <div className="max-w-7xl mx-5 md:mx-10 xl:mx-auto h-screen flex flex-col md:flex-row md:items-center justify-center md:gap-9 xl:gap-40">
         <div className="absolute md:left-0 lg:left-6 xl:left-12 2xl:left-0 w-full md:w-4/6">
           <img className="md:w-10/12" src={banner} alt="" />
         </div>

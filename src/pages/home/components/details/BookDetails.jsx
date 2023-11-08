@@ -9,6 +9,7 @@ import bg from "../../../../assets/bg4.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
   const [borrowStart, setBorrowStart] = useState("");
@@ -37,6 +38,7 @@ const BookDetails = () => {
 
   const handleBorrow = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Borrowing in Progress");
     const borrowData = {
       displayName: user?.displayName,
       email: user?.email,
@@ -48,10 +50,20 @@ const BookDetails = () => {
       await axios
         .post("http://localhost:5001/api/v1/borrow-book", borrowData)
         .then((data) => {
-          console.log(data.data);
           if (data.data.acknowledged) {
-            alert("book added successfully");
+            toast.success("Borrow Successful", { id: toastId });
           }
+        });
+
+      await axios
+        .patch(
+          `http://localhost:5001/api/v1/update-book/${findCategoryData[0]._id}`,
+          {
+            quantity: findCategoryData[0].quantity - 1,
+          }
+        )
+        .then(() => {
+          navigate(location.pathname);
         });
     } catch (err) {
       console.log(err);
@@ -150,9 +162,9 @@ const BookDetails = () => {
 
                         <div>
                           <p className="font-medium font-mono">
-                            Category :{" "}
+                            Quantity :{" "}
                             <span className="font-semibold">
-                              {data.category}
+                              {data.quantity}
                             </span>
                           </p>
                           <div className="flex w-full font-mono">
@@ -165,12 +177,13 @@ const BookDetails = () => {
                               type="date"
                               name="date"
                               id="date"
-                              placeholder="Publish date"
+                              required
                             />
                           </div>
                         </div>
                       </div>
                       <button
+                        disabled={data.quantity === 0}
                         type="submit"
                         className="w-full btn btn-sm lg:btn-md rounded-full mt-5 lg:text-base font-bold font-Montserrat bg-teal-600 hover:bg-teal-700 border-transparent hover:border-transparent  text-white"
                       >
@@ -179,7 +192,11 @@ const BookDetails = () => {
                     </form>
                   </div>
                 </dialog>
-                <Link className=" btn btn-outline btn-sm md:btn-md hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white">
+                <Link
+                  to={`/${data.category}/${data.bookTitle}/${data._id}`}
+                  state={location.pathname}
+                  className=" btn btn-outline btn-sm md:btn-md hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white"
+                >
                   Read More
                 </Link>
               </div>
