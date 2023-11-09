@@ -18,7 +18,7 @@ const BookCard = ({ card }) => {
       </figure>
 
       <div className="px-5 pb-6">
-        <h3 className="text-xl font-PT font-bold tracking-widest border-b pb-1 lg:pb-2 mt-3 mb-2 lg:mb-4 h-14 flex items-center">
+        <h3 className="text-xl font-PT font-bold tracking-widest border-b pb-1 lg:pb-2 mt-3 mb-2 lg:mb-4 h-14 flex items-center overflow-hidden">
           {bookTitle}
         </h3>
 

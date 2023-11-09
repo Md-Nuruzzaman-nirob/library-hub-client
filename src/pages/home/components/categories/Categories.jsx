@@ -1,22 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import bg from "../../../assets/gradient-bg.svg";
 
 const Categories = ({ categories }) => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   return (
     <div className="">
-      <div
-      // style={{
-      //   backgroundImage: `url(${bg})`,
-      //   backgroundSize: "cover",
-      //   backgroundRepeat: "no-repeat",
-      //   backgroundPosition: "center",
-      // }}
-      // className=""
-      >
+      <div>
         <div
           id="categories"
           className="max-w-7xl mx-5 md:mx-10 xl:mx-auto pb-20"

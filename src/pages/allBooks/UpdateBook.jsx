@@ -56,7 +56,7 @@ const UpdateBook = () => {
     try {
       await axios
         .patch(
-          `http://localhost:5001/api/v1/update-book/all-content/${_id}`,
+          `https://library-hub-server.vercel.app/api/v1/update-book/all-content/${_id}`,
           updateBook
         )
         .then((data) => {

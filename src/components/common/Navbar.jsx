@@ -3,10 +3,11 @@ import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
 import useAuth from "../../hooks/useAuth";
-import { Avatar } from "@mui/material";
+import axios from "axios";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [userProfile, setUserProfile] = useState(false);
 
   const { user, logout } = useAuth();
 
@@ -111,13 +112,76 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3 md:gap-8 relative">
           {user?.email ? (
-            <button onClick={() => logout()}>
-              {!user.imageURL ? (
-                <Avatar src="/broken-image.jpg" />
+            <div className="relative">
+              {user.photoURL ? (
+                <img
+                  onClick={() => setUserProfile(!userProfile)}
+                  className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
+                  src={user?.photoURL}
+                  alt=""
+                />
               ) : (
-                <img src={user.email} alt="" />
+                <img
+                  onClick={() => setUserProfile(!userProfile)}
+                  alt="tania andrew"
+                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+                  className="inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
+                />
               )}
-            </button>
+              {userProfile && (
+                <ul className="absolute right-0 flex min-w-[180px] flex-col gap-2 overflow-auto rounded-md border border-blue-gray-50 bg-[#feffff] p-3 shadow-lg shadow-gray-500/50 focus:outline-none">
+                  <button className="btn btn-sm flex justify-start w-full items-center gap-2 rounded-md px-3 outline-none hover:bg-gray-500 hover:bg-opacity-30 text-[#17252a]">
+                    <p className="block font-Ubuntu font-bold normal-case text-sm leading-normal text-inherit antialiased">
+                      {user?.displayName}
+                    </p>
+                  </button>
+
+                  <div className="btn btn-sm flex justify-start w-full items-center gap-2 rounded-md px-3 outline-none hover:bg-gray-500 hover:bg-opacity-30 text-[#17252a]">
+                    <p className="block font-Ubuntu font-bold normal-case text-sm leading-normal text-inherit antialiased">
+                      {user?.email}
+                    </p>
+                  </div>
+                  <hr className="border-blue-gray-50" />
+                  <button
+                    onClick={() => {
+                      const email = user.email;
+                      logout();
+                      axios
+                        .post(
+                          "https://library-hub-server.vercel.app/api/v1/jwt/logout",
+                          { email },
+                          {
+                            withCredentials: true,
+                          }
+                        )
+                        .then((data) => {
+                          console.log("remove cookie", data.data);
+                        });
+                    }}
+                    className="btn btn-sm flex justify-start w-full items-center gap-2 rounded-md px-3 outline-none hover:bg-gray-500 hover:bg-opacity-30 text-[#17252a]"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+                      ></path>
+                    </svg>
+                    <p className="block font-Ubuntu font-bold normal-case text-sm leading-normal text-inherit antialiased">
+                      Log Out
+                    </p>
+                  </button>
+                </ul>
+              )}
+            </div>
           ) : (
             <Link to={"/login"}>
               <button

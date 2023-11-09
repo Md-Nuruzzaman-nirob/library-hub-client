@@ -10,7 +10,7 @@ const AllBooks = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/api/v1/read-book`)
+      .get(`https://library-hub-server.vercel.app/api/v1/read-book`)
       .then((data) => setData(data.data));
   }, []);
   return (

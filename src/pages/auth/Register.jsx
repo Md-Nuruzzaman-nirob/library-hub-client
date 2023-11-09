@@ -227,7 +227,7 @@ const Register = () => {
                 />
                 <p
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 bottom-2 lg:bottom-3"
+                  className="absolute right-4 bottom-2 lg:top-11"
                 >
                   {showPass ? (
                     <RiEyeFill className="lg:w-5 lg:h-5" />

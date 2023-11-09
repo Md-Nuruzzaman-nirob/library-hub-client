@@ -33,7 +33,10 @@ const AddBook = () => {
     };
     try {
       await axios
-        .post("http://localhost:5001/api/v1/create-book", addBook)
+        .post(
+          "https://library-hub-server.vercel.app/api/v1/create-book",
+          addBook
+        )
         .then((data) => {
           if (data.data.acknowledged) {
             toast.success("Book Added Successfully", { id: toastId });
@@ -184,7 +187,14 @@ const AddBook = () => {
                     Select quantity
                   </option>
                   <option value="1">1</option>
-                  <option value="5">5</option>
+                  <option value="5">2</option>
+                  <option value="10">3</option>
+                  <option value="10">4</option>
+                  <option value="10">5</option>
+                  <option value="10">6</option>
+                  <option value="10">7</option>
+                  <option value="10">8</option>
+                  <option value="10">9</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
                   <option value="20">20</option>

@@ -1,11 +1,11 @@
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
-import { FaFacebook } from "react-icons/fa";
+// import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-  const { googleLogin, facebookLogin } = useAuth();
+  const { googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,12 +29,6 @@ const SocialLogin = () => {
           className="flex-1 btn btn-xs md:btn-sm lg:btn-md border-transparent bg-white font-bold font-Montserrat rounded-full"
         >
           <FcGoogle></FcGoogle> Google
-        </button>
-        <button
-          onClick={() => handleSocialLogin(facebookLogin)}
-          className="flex-1 btn btn-xs md:btn-sm lg:btn-md border-transparent bg-white font-bold font-Montserrat rounded-full"
-        >
-          <FaFacebook className="text-blue-500"></FaFacebook>Facebook
         </button>
       </div>
     </>

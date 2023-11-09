@@ -9,8 +9,8 @@ const Cards = ({ data, id }) => {
 
   return (
     <div className="card shadow-xl dark:shadow-lg dark:shadow-gray-800">
-      <figure>
-        <img src={imageUrl} alt="Book Image" />
+      <figure className="w-full h-[250px]">
+        <img className="h-full w-full" src={imageUrl} alt="Book Image" />
       </figure>
 
       <div className="px-5 pb-6">

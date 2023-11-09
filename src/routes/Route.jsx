@@ -20,7 +20,8 @@ const Route = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5001/api/v1/categories"),
+        loader: () =>
+          fetch("https://library-hub-server.vercel.app/api/v1/categories"),
       },
       {
         path: "addBook",
@@ -54,7 +55,8 @@ const Route = createBrowserRouter([
             <CategoryDetails></CategoryDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+        loader: () =>
+          fetch("https://library-hub-server.vercel.app/api/v1/read-book"),
       },
       {
         path: ":category/:id",
@@ -63,7 +65,8 @@ const Route = createBrowserRouter([
             <BookDetails></BookDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+        loader: () =>
+          fetch("https://library-hub-server.vercel.app/api/v1/read-book"),
       },
       {
         path: ":category/:title/:id",
@@ -72,7 +75,8 @@ const Route = createBrowserRouter([
             <ReadPage></ReadPage>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+        loader: () =>
+          fetch("https://library-hub-server.vercel.app/api/v1/read-book"),
       },
       {
         path: ":category/:title/:id/update",
@@ -81,7 +85,8 @@ const Route = createBrowserRouter([
             <UpdateBook></UpdateBook>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+        loader: () =>
+          fetch("https://library-hub-server.vercel.app/api/v1/read-book"),
       },
     ],
   },

@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import {
-  FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -15,7 +14,7 @@ import axios from "axios";
 export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
+// const githubProvider = new GithubAuthProvider();
 
 const ContextProvider = ({ children }) => {
   // useState
@@ -41,11 +40,11 @@ const ContextProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // facebook login
-  const facebookLogin = () => {
-    setLoader(true);
-    return signInWithPopup(auth, facebookProvider);
-  };
+  // // github login
+  // const githubLogin = () => {
+  //   setLoader(true);
+  //   return signInWithPopup(auth, githubProvider);
+  // };
 
   // logout
   const logout = () => {
@@ -61,19 +60,15 @@ const ContextProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post("http://localhost:5001/api/v1/jwt", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://library-hub-server.vercel.app/api/v1/jwt",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((data) => {
             console.log("access token", data.data);
-          });
-      } else {
-        axios
-          .post("http://localhost:5001/api/v1/jwt/logout", loggedUser, {
-            withCredentials: true,
-          })
-          .then((data) => {
-            console.log("remove cookie", data.data);
           });
       }
       setLoader(false);
@@ -85,7 +80,6 @@ const ContextProvider = ({ children }) => {
 
   const authentication = {
     googleLogin,
-    facebookLogin,
     createUser,
     loginUser,
     logout,
