@@ -3,13 +3,11 @@ import bg from "../../assets/bg4.jpg";
 import bg2 from "../../assets/gradient-bg.svg";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const BorrowedBooks = () => {
   const [data, setData] = useState([]);
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -55,7 +53,7 @@ const BorrowedBooks = () => {
                     "Your book has been returned successfully.",
                     "success"
                   );
-                  navigate("/");
+                  location.reload();
                 });
             }
           });

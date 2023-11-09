@@ -6,7 +6,10 @@ import BookCard from "./BookCard";
 
 const AllBooks = () => {
   const [data, setData] = useState([]);
-  console.log(data);
+  const [filter, setFilter] = useState(false);
+
+  const filterData = data.filter((card) => card.quantity > 0);
+  console.log(filterData);
 
   useEffect(() => {
     axios
@@ -38,10 +41,19 @@ const AllBooks = () => {
           backgroundPosition: "center",
         }}
       >
+        <div className="text-right max-w-7xl mx-5 md:mx-10 xl:mx-auto pt-10">
+          <button onClick={() => setFilter(!filter)} className="btn btn-sm">
+            Filter
+          </button>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-5 md:mx-10 xl:mx-auto py-20">
-          {data?.map((card) => (
-            <BookCard key={card._id} card={card}></BookCard>
-          ))}
+          {filter
+            ? filterData?.map((card) => (
+                <BookCard key={card._id} card={card}></BookCard>
+              ))
+            : data?.map((card) => (
+                <BookCard key={card._id} card={card}></BookCard>
+              ))}
         </div>
       </div>
     </div>
