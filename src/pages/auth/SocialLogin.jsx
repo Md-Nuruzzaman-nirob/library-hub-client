@@ -20,7 +20,7 @@ const SocialLogin = () => {
   };
   return (
     <>
-      <div className="divider font-medium text-xs md:text-sm lg:text-base">
+      <div className="divider font-medium text-xs lg:text-sm">
         Or Login With
       </div>
       <div className="flex items-center gap-4">

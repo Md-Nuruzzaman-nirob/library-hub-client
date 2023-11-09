@@ -1,5 +1,6 @@
 import logo from "../../assets/logo.png";
 import bg from "../../assets/gradient-bg.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,18 +16,24 @@ const Footer = () => {
         <footer className="footer py-10 md:justify-around">
           <nav>
             <header className="footer-title">Services</header>
-            <a className="link link-hover font-medium underline-offset-[6px]">
-              Branding
-            </a>
-            <a className="link link-hover font-medium underline-offset-[6px]">
-              Design
-            </a>
-            <a className="link link-hover font-medium underline-offset-[6px]">
-              Marketing
-            </a>
-            <a className="link link-hover font-medium underline-offset-[6px]">
-              Advertisement
-            </a>
+            <Link
+              to={"/addBook"}
+              className="link link-hover font-medium underline-offset-[6px]"
+            >
+              Add Book
+            </Link>
+            <Link
+              to={"/allBooks"}
+              className="link link-hover font-medium underline-offset-[6px]"
+            >
+              All Books
+            </Link>
+            <Link
+              to={"/borrowedBooks"}
+              className="link link-hover font-medium underline-offset-[6px]"
+            >
+              Borrowed Books
+            </Link>
           </nav>
           <nav>
             <header className="footer-title">Company</header>
@@ -38,9 +45,6 @@ const Footer = () => {
             </a>
             <a className="link link-hover font-medium underline-offset-[6px]">
               Jobs
-            </a>
-            <a className="link link-hover font-medium underline-offset-[6px]">
-              Press kit
             </a>
           </nav>
           <nav>
@@ -60,10 +64,10 @@ const Footer = () => {
           <aside className="items-center grid-flow-col">
             <img className="w-12 h-12" src={logo} alt="" />
             <div>
-              <p className="font-bold opacity-90 text-base tracking-widest">
+              <p className="font-bold opacity-90 md:text-base tracking-widest">
                 Library Hub
               </p>
-              <p className="text-sm lg:text-base font-medium">
+              <p className="text-xs md:text-sm lg:text-base font-medium">
                 Providing reliable tech since 1992
               </p>
             </div>

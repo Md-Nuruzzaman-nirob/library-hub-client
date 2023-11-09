@@ -10,6 +10,7 @@ import CategoryDetails from "../pages/home/components/categories/CategoryDetails
 import PrivateRoute from "./PrivateRoute";
 import BookDetails from "../pages/home/components/details/BookDetails";
 import ReadPage from "../pages/home/components/details/ReadPage";
+import UpdateBook from "../pages/allBooks/UpdateBook";
 
 const Route = createBrowserRouter([
   {
@@ -69,6 +70,15 @@ const Route = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ReadPage></ReadPage>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5001/api/v1/read-book"),
+      },
+      {
+        path: ":category/:title/:id/update",
+        element: (
+          <PrivateRoute>
+            <UpdateBook></UpdateBook>
           </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:5001/api/v1/read-book"),

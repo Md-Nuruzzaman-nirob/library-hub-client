@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
+
 import { Link, useLocation } from "react-router-dom";
 
-const Cards = ({ data, id }) => {
-  const { authorName, bookTitle, imageUrl, rating, _id, quantity, category } =
-    data || {};
+const BookCard = ({ card }) => {
+  console.log(card);
+  const { authorName, bookTitle, category, imageUrl, quantity, rating, _id } =
+    card || {};
+
+  console.log(card);
 
   const location = useLocation();
-
+  console.log(location);
   return (
     <div className="card shadow-xl dark:shadow-lg dark:shadow-gray-800">
-      <figure>
-        <img src={imageUrl} alt="Book Image" />
+      <figure className="w-full h-[250px]">
+        <img className="w-full h-full" src={imageUrl} alt="Book Image" />
       </figure>
 
       <div className="px-5 pb-6">
@@ -80,16 +84,26 @@ const Cards = ({ data, id }) => {
             </div>
           </p>
         </div>
-        <Link
-          to={`/${id}/${_id}`}
-          state={location.pathname}
-          className="btn w-full btn-sm  bg-teal-700 hover:bg-teal-800 text-white text-xs md:text-sm rounded-full border-none"
-        >
-          Details
-        </Link>
+        <div className="flex items-center gap-5">
+          <Link
+            to={`/${category}/${bookTitle}/${_id}`}
+            state={location.pathname}
+            className="flex-1 btn btn-outline btn-sm hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white"
+          >
+            Read More
+          </Link>
+          <Link
+            to={`/${category}/${bookTitle}/${_id}/update`}
+            state={location.pathname}
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+            className="flex-1 btn btn-sm  bg-orange-500 hover:bg-orange-600  text-white text-xs md:text-sm rounded-full border-none"
+          >
+            Update
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Cards;
+export default BookCard;

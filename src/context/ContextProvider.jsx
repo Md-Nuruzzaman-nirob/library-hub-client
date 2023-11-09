@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -48,20 +49,39 @@ const ContextProvider = ({ children }) => {
 
   // logout
   const logout = () => {
+    setLoader(true);
     return signOut(auth);
   };
 
   // auth on state
   useEffect(() => {
-    const onAuth = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      setUser(currentUser);
+      if (currentUser) {
+        axios
+          .post("http://localhost:5001/api/v1/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((data) => {
+            console.log("access token", data.data);
+          });
+      } else {
+        axios
+          .post("http://localhost:5001/api/v1/jwt/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((data) => {
+            console.log("remove cookie", data.data);
+          });
+      }
       setLoader(false);
     });
-
     () => {
-      return onAuth;
+      return unsubscribe;
     };
-  }, []);
+  }, [user?.email]);
 
   const authentication = {
     googleLogin,

@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 import Cards from "./Cards";
 import bg from "../../../../assets/bg4.jpg";
+import content from "../../../../assets/noData.png";
 
 const CategoryDetails = () => {
   const { id } = useParams();
-  const categoryData = useLoaderData();
+  const categoryData = useLoaderData() || [];
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,11 +40,24 @@ const CategoryDetails = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-5 md:mx-10 xl:mx-auto my-20">
-        {filteredCategory?.map((data) => (
-          <Cards key={data._id} id={id} data={data}></Cards>
-        ))}
-      </div>
+
+      {filteredCategory.length === 0 ? (
+        <div className=" flex justify-center items-center">
+          <img src={content} alt="" />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-5 md:mx-10 xl:mx-auto my-20">
+          {filteredCategory.length === 0 ? (
+            <div className=" flex justify-center items-center border">
+              <img src={content} alt="" />
+            </div>
+          ) : (
+            filteredCategory?.map((data) => (
+              <Cards key={data._id} id={id} data={data}></Cards>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };

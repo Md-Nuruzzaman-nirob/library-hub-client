@@ -38,13 +38,7 @@ const Navbar = () => {
         <Link to={"/"}>
           <div className="flex items-center gap-2">
             <img className="w-8 h-8 md:w-10 md:h-10" src={logo} alt="" />
-            <h3
-              style={{
-                textShadow:
-                  "2px 2px 4px rgba(0, 0, 0, 0.4), 2px 2px 4px rgba(255, 255, 255, 0.4)",
-              }}
-              className="sm:text-lg md:text-xl font-bold text-orange-500 shadow-white  tracking-widest"
-            >
+            <h3 className="sm:text-lg md:text-xl font-Montserrat font-extrabold text-orange-500 tracking-widest">
               Library <span className="text-cyan-700">Hub</span>
             </h3>
           </div>

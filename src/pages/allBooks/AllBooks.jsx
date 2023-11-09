@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react";
 import bg from "../../assets/bg4.jpg";
 import bg2 from "../../assets/gradient-bg.svg";
+import axios from "axios";
+import BookCard from "./BookCard";
 
 const AllBooks = () => {
+  const [data, setData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5001/api/v1/read-book`)
+      .then((data) => setData(data.data));
+  }, []);
   return (
-    <div className="dark:bg-gray-900 h-screen">
+    <div className="dark:bg-gray-900">
       <div
         style={{
           backgroundImage: `url(${bg})`,
@@ -26,8 +37,13 @@ const AllBooks = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="h-screen"
-      ></div>
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-5 md:mx-10 xl:mx-auto py-20">
+          {data?.map((card) => (
+            <BookCard key={card._id} card={card}></BookCard>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

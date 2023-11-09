@@ -29,11 +29,11 @@ const Theme = () => {
         onClick={handleTheme}
         // onMouseEnter={() => setShowThemeTooltip(true)}
         // onMouseLeave={() => setShowThemeTooltip(false)}
-        className="relative btn btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white border-none"
+        className="relative btn btn-circle flex justify-center items-center bg-orange-500 hover:bg-orange-600 dark:bg-teal-700 dark:hover:bg-teal-800 border-none"
       >
         {theme ? (
           <>
-            <MdModeNight className="w-7 h-7 text-black "></MdModeNight>
+            <MdModeNight className="w-7 h-7 text-white "></MdModeNight>
             {/* <p>
               {showThemeTooltip && (
                 <small className="hidden lg:block absolute top-10 left-0 font-Ubuntu font-medium z-[100] dark:text-gray-100">

@@ -39,13 +39,13 @@ const Banner = () => {
           <div className="flex items-center justify-center md:justify-start gap-3">
             <Link
               to={"/register"}
-              className="btn btn-sm md:btn-md  bg-orange-500 hover:bg-orange-600  text-white text-xs md:text-sm rounded-full border-none"
+              className="btn btn-sm  bg-orange-500 hover:bg-orange-600  text-white text-xs md:text-sm rounded-full border-none"
             >
               Register Now
             </Link>
             <a
               href="#categories"
-              className="btn btn-outline btn-sm md:btn-md hover:bg-transparent hover:text-black text-xs md:text-sm rounded-full dark:border-white dark:text-white"
+              className="btn btn-sm  bg-teal-700 hover:bg-teal-800  text-white text-xs md:text-sm rounded-full border-none"
             >
               Get Started
             </a>
