@@ -1,8 +1,9 @@
-# React + Vite
+# Library Hub Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Library Hub website focuses on Library Management, allowing users to borrow and return books across different categories. Users can also add or update books.
 
-Currently, two official plugins are available:
+# Library Hub Links :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Server Side Link : https://github.com/Md-Nuruzzaman-nirob/library-hub-server
+
+Live Link : https://library-hub-ef83f.web.app/
